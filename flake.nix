@@ -3,28 +3,37 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
+  outputs =
+    inputs@{
+      nixpkgs,
+      home-manager,
+      nixos-hardware,
+      ...
+    }:
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./boot.nix
+            ./configuration.nix
+            nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+              home-manager.users.nghia = import ./home.nix;
 
-            home-manager.users.nghia = import ./home.nix;
-
-          }
-        ];
+            }
+          ];
+        };
       };
     };
-  };
 }
