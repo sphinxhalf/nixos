@@ -33,20 +33,20 @@
             }
           ];
         };
-      };
 
-      dell-precision-t3600 = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./hosts/dell-precision-t3600/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+        dell-precision-t3600 = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/dell-precision-t3600/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 
-            home-manager.users.nghia = import ./home.nix;
+              home-manager.users.nghia = import ./home.nix;
 
-          }
-        ];
+            }
+          ];
+        };
       };
     };
 }
