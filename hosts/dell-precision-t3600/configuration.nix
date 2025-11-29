@@ -27,6 +27,7 @@
       turbo = "auto";
     };
   };
+  services.power-profiles-daemon.enable = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
