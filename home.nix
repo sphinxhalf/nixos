@@ -45,6 +45,10 @@
 
   programs.ghostty = {
     enable = true;
+    settings = {
+      theme = "gruvbox-material";
+      font-size = 16;
+    };
   };
 
   programs.starship = {
