@@ -19,10 +19,9 @@
     }:
     {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        thinkpad-t14-amd-gen3 = nixpkgs.lib.nixosSystem {
           modules = [
-            ./boot.nix
-            ./configuration.nix
+            ./hosts/thinkpad-t14-amd-gen3/configuration.nix
             nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
             home-manager.nixosModules.home-manager
             {
