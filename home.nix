@@ -11,6 +11,7 @@
     unzip
     p7zip
     xclip
+    protonvpn-gui
   ];
 
   # basic configuration of git, please change to your own
