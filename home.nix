@@ -10,8 +10,10 @@
     xz
     unzip
     p7zip
+    protonvpn-gui
     xclip
     protonvpn-gui
+    brave
   ];
 
   # basic configuration of git, please change to your own
