@@ -157,6 +157,7 @@
       git
       vim
       cpufrequtils
+      gnomeExtensions.vitals
     ]
   );
 
