@@ -17,6 +17,11 @@
       nixos-hardware,
       ...
     }:
+
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
       nixosConfigurations = {
         thinkpad-t14-amd-gen3 = nixpkgs.lib.nixosSystem {
@@ -47,6 +52,17 @@
             }
           ];
         };
+      };
+
+      homeConfigurations."nghia" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./hosts/ubuntu-wsl/home.nix ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
     };
 }
