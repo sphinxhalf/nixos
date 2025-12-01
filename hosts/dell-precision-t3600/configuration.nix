@@ -64,7 +64,7 @@
     enable = true;
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
-      fcitx5-unikey
+      qt6Packages.fcitx5-unikey
       fcitx5-nord # a color theme
     ];
   };
@@ -78,12 +78,8 @@
     fira-code-symbols
   ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -122,29 +118,9 @@
     ];
   };
 
-  users.defaultUserShell = pkgs.zsh;
-
   # Install firefox.
   programs.firefox.enable = true;
-  # Config zsh shell
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
 
-    shellAliases = {
-      ll = "ls -l";
-      edit = "sudo -e";
-      update = "sudo nixos-rebuild switch --flake ~/nixos/#nixos";
-    };
-
-    histSize = 10000;
-    histFile = "$HOME/.zsh_history";
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-    ];
-  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -156,6 +132,7 @@
       wget
       git
       vim
+      zsh
     ]
   );
 
