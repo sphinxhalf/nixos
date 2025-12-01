@@ -1,4 +1,3 @@
-vim.cmd.colorscheme("Alabaster")
 -- Set leader key
 vim.g.mapleader = ' '
 

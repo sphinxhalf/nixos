@@ -22,11 +22,6 @@
     userEmail = "nghiavu7636@gmail.com";
   };
 
-  home.file."${config.xdg.configHome}/nvim/colors/mycolor.lua" = {
-    source = ../../nvim/colors/alabaster.lua;
-    executable = false;
-  };
-
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -44,6 +39,11 @@
       cmp_luasnip
       friendly-snippets
       conform-nvim
+      {
+        type = "lua";
+        plugin = nord-nvim;
+        config = ''vim.cmd[[colorscheme nord]]'';
+      }
     ];
     extraPackages = with pkgs; [
       nil
