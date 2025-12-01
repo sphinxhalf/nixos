@@ -22,21 +22,28 @@
     userEmail = "nghiavu7636@gmail.com";
   };
 
+  home.file."${config.xdg.configHome}/nvim/colors/mycolor.lua" = {
+    source = ../../nvim/colors/alabaster.lua;
+    executable = false;
+  };
+
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
 
-    extraLuaConfig = builtins.readFile ./nvim/init.lua;
+    extraLuaConfig = builtins.readFile ../../nvim/init.lua;
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      luasnip
+      cmp_luasnip
+      friendly-snippets
       conform-nvim
-      {
-        type = "lua";
-        plugin = gruvbox-material-nvim;
-        config = ''require('gruvbox-material').setup()'';
-      }
     ];
     extraPackages = with pkgs; [
       nil
