@@ -19,8 +19,8 @@
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "nghia";
-    userEmail = "nghiavu7636@gmail.com";
+    settings.user.name = "nghia";
+    settings.user.email = "nghiavu7636@gmail.com";
   };
 
   programs.neovim = {
@@ -42,8 +42,8 @@
       conform-nvim
       {
         type = "lua";
-        plugin = nord-nvim;
-        config = ''vim.cmd[[colorscheme nord]]'';
+        plugin = tokyonight-nvim;
+        config = ''vim.cmd[[colorscheme tokyonight-storm]]'';
       }
     ];
     extraPackages = with pkgs; [
@@ -56,7 +56,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "Nord";
+      theme = "TokyoNight Storm";
       font-size = 16;
     };
   };
