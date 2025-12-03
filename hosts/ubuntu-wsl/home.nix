@@ -41,8 +41,8 @@
       conform-nvim
       {
         type = "lua";
-        plugin = nord-nvim;
-        config = ''vim.cmd[[colorscheme nord]]'';
+        plugin = gruvbox-nvim;
+        config = ''vim.cmd[[colorscheme gruvbox]]'';
       }
     ];
     extraPackages = with pkgs; [
@@ -55,12 +55,36 @@
   programs.starship = {
     enable = true;
     settings = {
-      add_newline = true;
-      aws.disabled = true;
-      gcloud.disabled = true;
-      line_break.disabled = true;
+      add_newline = false;
+
+      nix_shell = {
+        symbol = "❄️ ";
+        format = "via [$symbol$state]($style) ";
+      };
     };
   };
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
-  home.stateVersion = "25.05";
+    shellAliases = {
+      ll = "ls -l";
+      edit = "sudo -e";
+      update = "sudo nixos-rebuild switch";
+    };
+
+    history.size = 10000;
+    history.ignoreAllDups = true;
+    history.path = "$HOME/.zsh_history";
+    history.ignorePatterns = [
+      "rm *"
+      "pkill *"
+      "cp *"
+    ];
+  };
+
+  home.stateVersion = "25.11";
 }
